@@ -43,7 +43,7 @@ class Product with ChangeNotifier {
 
   Future<void> toggleFavoriteStatus(String? authToken, String? userId) async {
     final url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/user-favorites/$userId/$id.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/user-favorites/$userId/$id.json?auth=$authToken');
 
     this.isFavorite = !this.isFavorite;
     notifyListeners();
@@ -120,7 +120,7 @@ class ProductsProvider with ChangeNotifier {
     final filterByUserCondition =
         filterByUser == false ? '' : '&orderBy="userId"&equalTo="$userId"';
     var url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/products.json?auth=$authToken$filterByUserCondition');
+        'Put here Your Firebase Real Time DB URL/products.json?auth=$authToken$filterByUserCondition');
     try {
       final response = await http.get(url).timeout(Duration(seconds: 30));
 
@@ -128,7 +128,7 @@ class ProductsProvider with ChangeNotifier {
         return;
       }
       url = Uri.parse(
-          'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/user-favorites/$userId.json?auth=$authToken');
+          'Put here Your Firebase Real Time DB URL/user-favorites/$userId.json?auth=$authToken');
       final favoriteResponse = await http.get(url);
       final favoriteData = jsonDecode(favoriteResponse.body);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -155,7 +155,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/products.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/products.json?auth=$authToken');
     try {
       final response = await http.post(url,
           body: jsonEncode({
@@ -175,7 +175,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> updateProduct(String id, Product editedProduct) async {
     final url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/products/$id.json?auth=$authToken');
 
     final response = await http.patch(url,
         body: jsonEncode({
@@ -195,7 +195,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     var url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/products/$id.json?auth=$authToken');
 
     final productIndex = _products.indexWhere((product) => product.id == id);
     Product? product = _products[productIndex];
@@ -204,7 +204,7 @@ class ProductsProvider with ChangeNotifier {
 
     final response = await http.delete(url);
     url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/user-favorites/$userId/$id.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/user-favorites/$userId/$id.json?auth=$authToken');
     await http.delete(url);
     if (response.statusCode >= 400) {
       _products.insert(productIndex, product);
