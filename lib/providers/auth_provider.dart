@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:shop_application/models/HttpException.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const ApiKey = 'AIzaSyDMnraafzzalMqTwAX-9GMJdDgpp6wPcsc';
+const ApiKey = 'Your Firebase Auth Rest-API Web API Key';
 
 class Auth with ChangeNotifier {
   String? _userId;
