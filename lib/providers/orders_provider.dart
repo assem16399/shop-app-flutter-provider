@@ -29,7 +29,7 @@ class OrdersProvider with ChangeNotifier {
 
   Future<void> fetchAndSetOrders() async {
     final url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/orders/$userId.json?auth=$authToken');
     try {
       final response = await http.get(url);
       if (jsonDecode(response.body) == null) return;
@@ -57,7 +57,7 @@ class OrdersProvider with ChangeNotifier {
 
   Future<void> addOrder(double totalAmount, List<CartItem> order) async {
     final url = Uri.parse(
-        'https://shop-application-flutter-3a99a-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken');
+        'Put here Your Firebase Real Time DB URL/orders/$userId.json?auth=$authToken');
     try {
       final date = DateTime.now();
       final response = await http.post(url,
