@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import './helpers/custom-route.dart';
+import './providers/auth_provider.dart';
 import './providers/cart.dart';
 import './providers/orders_provider.dart';
 import './providers/products_provider.dart';
@@ -10,9 +13,7 @@ import './screens/orders_screen.dart';
 import './screens/product_details_screen.dart';
 import './screens/products_overview_screen.dart';
 import './screens/splash_screen.dart';
-import './screens/user_products_screen.dart';
-import './helpers/custom-route.dart';
-import './providers/auth_provider.dart';
+import 'screens/user_products_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (context, authData, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'My Shop',
           theme: ThemeData(
             pageTransitionsTheme: PageTransitionsTheme(
